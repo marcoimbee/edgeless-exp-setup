@@ -1,5 +1,8 @@
 # Computation offloading and energy consumption in the Internet of Things: a structured approach
 
+## About this work and this repository
+TODO TODO TODO
+
 ## Starting an experiment campaign to measure data for the proposed EDGELESS workflow
 This file serves as a guide to reproduce the experiment runs conducted in the second experiment campaign. In this type of experiments, power consumption, Time to Complete, and execution times data will be gathered for a later analysis. To exactly reproduce the experimental setup, the following main components are needed:
 - A RaspberryPI 3B+ board (RPI): will host one $\varepsilon$-node and the device module of the Python automation script
