@@ -89,6 +89,8 @@ cd edgeless/target/debug
 ```
 These commands will create the respective `.wasm` files of the compiled functions. Such files will be placed in each function's directory inside the `functions` folder of the repository for EDGELESS to retrieve.
 
+Errors will occur if the `.db` SQLite file containing the serialized Random Forest classifier is not placed in the right directory. The provided `edgeless_db.db` must be placed on both the RPI and the node-hosting virtual machine inside the `/var/tmp` directory, as explained in Chapter 3 of the work.
+
 ### Starting the automation script
 To start the experiments, the Python automation script must first be started on the RPI.
 The script can be started on the RPI board by running the following:
