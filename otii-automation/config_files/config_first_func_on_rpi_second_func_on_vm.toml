@@ -1,0 +1,28 @@
+## Experiment general information:
+## generate_samples(): RPI 
+## extract_features(): RPI
+## classify(): VM
+## handle_class_result(): RPI
+[meta]
+version = 3
+name = "offloading-experiments"
+repetition = 30
+description = "TtC and energy consumption test for first function on RPI and second function on VM node"
+experiment = 'first-func-on-rpi-second-func-on-vm'
+duration = 60       ## Duration of each run (s)
+
+## Otii API configuration
+[otii]
+software_version = "3.5.3"
+hostname = "127.0.0.1"
+port = 1905
+license_user = "<license-user>"
+license_psw = "<license-password>"
+baudrate = 115200
+
+[rpi]
+edgeless_exec_dir = "/home/pi/Desktop/edgeless/target/debug"
+workflow_path = "/home/pi/Desktop/workflows/workflow_first_func_on_rpi_second_func_on_vm.json"
+ttc_logs_path = "/home/pi/Desktop/ttc_logs/first_func_on_rpi_second_func_on_vm"
+
+[params]
