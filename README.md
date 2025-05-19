@@ -4,17 +4,18 @@
 TODO TODO TODO
 
 ## Starting an experiment campaign to measure data for the proposed EDGELESS workflow
-This file serves as a guide to reproduce the experiment runs conducted in the second experiment campaign. In this type of experiments, power consumption, Time to Complete, and execution times data will be gathered for a later analysis. To exactly reproduce the experimental setup, the following main components are needed:
-- A RaspberryPI 3B+ board (RPI): will host one $\varepsilon$-node and the device module of the Python automation script
-- A first Ubuntu virtual machine: will host $\varepsilon$-CON, $\varepsilon$-ORC, the metrics collector $\varepsilon$-node, and the Redis database
-- A second Ubuntu virtual machine: will host one $\varepsilon$-node.
-- A PC: will serve as the controller and will run the controller module of the Python automation script.
-- An Otii Arc Pro power monitor: used to power up the RaspberryPi board.
+This file serves as a guide to reproduce the experiment runs conducted in the experiment campaigns. In this type of experiments, power consumption and Time to Complete data will be gathered for a later analysis. To exactly reproduce the experimental setup, the following main components are needed:
+- **A RaspberryPI 3B+ board (RPI):** will host one $\varepsilon$-node and the device module of the Python automation script
+- **A first Ubuntu virtual machine:** will host $\varepsilon$-CON, $\varepsilon$-ORC, and the Redis database used by the latter.
+- **A second Ubuntu virtual machine:** will host one $\varepsilon$-node.
+- **A PC:** will serve as the controller and will run the controller module of the Python automation script.
+- **An Otii Arc Pro power monitor:** used to power up the RaspberryPi board.
 The next steps assume that these requirements are satisfied.
 
 ### Downloading and setting up the automation scripts
 A copy of the automation script must be available both on the RPI board and on the PC.
-The folder will contain the automation script's code, in addition to the different EDGELESS functions code and workflow files that will be used by the framework and by the script itself.
+The folder will contain the automation script's code, in addition to the different EDGELESS functions code and workflow files that will be used by the framework and by the script itself. Some Python notebooks containing code to analyze the
+collected data are also provided.
 
 ### Running the EDGELESS cluster
 An EDGELESS cluster must be up and running in order to reproduce this type of experiments. First of all, clone the EDGELELESS repository from GitHub:
@@ -30,15 +31,17 @@ cd edgeless/target/debug
 ./edgeless_orc_d -t orchestrator.toml
 ```
 Once the configuration files have been created, they can be edited following the structure in the dedicated section of Appendix A of the thesis work.
-Create the metrics collector ε-node:
+<!-- Create the metrics collector ε-node:
 ```
 ./edgeless_inabox -t --metrics-collector
-```
-The repository comes with a handy `start\_cluster.sh` shell file that can be used to launch in a single command the ε-CON, ε-ORC, and the metrics collector ε-node:
+``` -->
+The repository comes with a handy `start_cluster.sh` shell file that can be used to launch in a single command the ε-CON and the ε-ORC:
 ```
 ./start_cluster.sh
 ```
-The commands in the script are run by prepending `RUST_LOG=info` to each instruction: this will make EDGELESS log in the command line interface the components' activity. This is rather useful to understand if everything was set up correctly. Once the metrics collector node starts, the ε-CON console should show a message saying that the cluster has been updated and is now composed of 1 EDGELESS node, along with the resources it is offering. On this virtual machine, a Redis in-memory database must be available, and it can be installed easily following the instructions provided in the official Redis distribution online page.
+The commands in the script are run by prepending `RUST_LOG=info` to each instruction: this will make EDGELESS log in the command line interface the components' activity. This is rather useful to understand if everything was set up correctly. 
+<!-- Once the metrics collector node starts, the ε-CON console should show a message saying that the cluster has been updated and is now composed of 1 EDGELESS node, along with the resources it is offering. --> 
+On this virtual machine, a Redis in-memory database must be available, and it can be installed easily following the instructions provided in the official Redis distribution online page: the database is going to be used by the ε−ORC to mirror its internal data structures.
 
 On the RaspberryPI, move into `edgeless/target/debug` and run:
 ```
@@ -52,22 +55,22 @@ Create the configuration file for the EDGELESS CLI tool:
 Edit the node's configuration file and, finally, launch it:
 ```
 RUST_LOG=info ./edgeless_node_d
-../../../otii-automation/otii_automation/ \
-    device/edgeless/rpi_node_log.log \
-    2>&1
 ```
-Again, the ε-CON command line window should show a success message if the node has been added without any problem to the running EDGELESS cluster. The node's console on the RPI will not show any message, as its output is being actively redirected to the specified file. 
-Inspecting `otii-automation/otii_automation/device/edgeless/rpi_node_log.log` will show the node's output.
-
+<!-- ../../../otii-automation/otii_automation/ \
+    device/edgeless/rpi_node_log.log \
+    2>&1 -->
+Again, the ε-CON command line window should show a success message if the node has been added without any problem to the running EDGELESS cluster. 
+In this case, the command line window that has been used to spawn the node will show some messages telling that the node has been successfully added to the domain.
 On the second virtual machine, move into `edgeless/target/debug` and run:
 ```
 ./edgeless_node_d -t node.toml
 ```
 Edit the node's configuration file and launch it:
 ```
-RUST_LOG=info ./edgeless_node_d > vm_node_log.log 2>&1
+RUST_LOG=info ./edgeless_node_d
 ```
-At this point, the ε-CON's console window should now show that a total of 3 nodes are available in the EDGELESS cluster. As for the RPI one, the node's console is not showing anything, as its output is redirected to the specified file. Inspecting `vm_node_log.log` can be helpful to visualize its output.
+<!-- RUST_LOG=info ./edgeless_node_d > vm_node_log.log 2>&1 -->
+At this point, the ε-CON's console window should now show that a total of 2 nodes are available in the EDGELESS cluster. As for the RPI one, the node’s console will show some success messages, including that the node has been added to the orchestration domain.
 
 Once the two working nodes' configuration files have been created, it is possible to inspect them to know the UUIDs that EDGELESS has automatically assigned to them. Such UUIDs must be carefully pasted into the JSON workflow file that specifies the workflow type that needs to be used during the experiment (placeholders are present in the files).
 
@@ -111,3 +114,5 @@ python3 main.py controller --config <path-to-TOML-config-file>
 An example of an experiment configuration file can be found in Appendix A of the thesis work.
 
 The controller script will start communicating via UART to the RPI using the power monitor. Once the experiments are over, power data will be readily available in the `results` directory of the controller side automation script, while data about TtC will be found on the RPI in the locations specified in the TOML configuration file for the experiment.
+
+### Data analysis
