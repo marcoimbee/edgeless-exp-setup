@@ -1,7 +1,7 @@
 # Computation offloading and energy consumption in the Internet of Things: a structured approach
 
 ## About this work and this repository
-TODO TODO TODO
+A repository containing all the necessary files to run an experimental campaign to gather power and Time to Complete data in an EDGELESS cluster. Developed for my master degree thesis (2025).
 
 ## Starting an experiment campaign to measure data for the proposed EDGELESS workflow
 This file serves as a guide to reproduce the experiment runs conducted in the experiment campaigns. In this type of experiments, power consumption and Time to Complete data will be gathered for a later analysis. To exactly reproduce the experimental setup, the following main components are needed:
@@ -116,3 +116,9 @@ An example of an experiment configuration file can be found in Appendix A of the
 The controller script will start communicating via UART to the RPI using the power monitor. Once the experiments are over, power data will be readily available in the `results` directory of the controller side automation script, while data about TtC will be found on the RPI in the locations specified in the TOML configuration file for the experiment.
 
 ### Data analysis
+The folder contains the following notebooks:
+- **pareto.ipynb:** can be used to produce a Pareto front graph visualization of the different configurations (x axis: average TtC data, y axis: average power data)
+- **power_vs_cores.ipynb:** can be used to produce a graph showing, at the variation of the number of active cores on the RPI, the different average energy that is spent in the configurations
+- **ttc_vs_cores.ipynb:** can be used to produce a graph showing, at the variation of the number of active cores on the RPI, the different average TtC that is spent in the configurations
+- **ttc_analysis.ipynb:** can be used to produce grouped box plots showing the average TtC in the different offloading configurations
+- **power_analysis.ipynb:** can be used to produce grouped box plots showing the average power consumption in the different offloading configurations
