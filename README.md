@@ -12,6 +12,15 @@ This file serves as a guide to reproduce the experiment runs conducted in the ex
 - **An Otii Arc Pro power monitor:** used to power up the RaspberryPi board.
 The next steps assume that these requirements are satisfied.
 
+## Directory structure
+- **classifier_training/:** contains the Rust programs that have been employed to train and serialize the Random Forest classifier used in the project.
+- **data_analysis/:** contains some Python notebooks to analyze and visualize the gathered data.
+- **functions/:** contains the packages of the four EDGELESS functions that have been developed for this project.
+- **otii-automation/:** contains the Otii power monitor Python automation code.
+- **workflows/:** contains the JSON files of the different workflows that have been tested in the project.
+- **edgeelss_db.db:** the SQLite3 database file containing the serialized Random Forest classifier.
+- **start_cluster.sh:** handy bash script to help starting a minimal EDGELESS cluster composed of an EDGELESS controller and orchestrator (single orchestration domain).
+
 ### Downloading and setting up the automation scripts
 A copy of the automation script must be available both on the RPI board and on the PC.
 The folder will contain the automation script's code, in addition to the different EDGELESS functions code and workflow files that will be used by the framework and by the script itself. Some Python notebooks containing code to analyze the
