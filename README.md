@@ -19,7 +19,7 @@ The next steps assume that these requirements are satisfied.
 - **otii-automation/:** contains the Otii power monitor Python automation code.
 - **workflows/:** contains the JSON files of the different workflows that have been tested in the project.
 - **edgeelss_db.db:** the SQLite3 database file containing the serialized Random Forest classifier.
-- **start_cluster.sh:** handy bash script to help starting a minimal EDGELESS cluster composed of an EDGELESS controller and orchestrator (single orchestration domain).
+- **start_cluster.sh:** handy bash script to help start a minimal EDGELESS cluster composed of an EDGELESS controller and orchestrator (single orchestration domain).
 
 ### Downloading and setting up the automation scripts
 A copy of the automation script must be available both on the RPI board and on the PC.
