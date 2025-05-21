@@ -9,7 +9,7 @@ A repository containing all the necessary files to run an experimental campaign 
 - **functions/:** contains the packages of the four EDGELESS functions that have been developed for this project.
 - **otii-automation/:** contains the Otii power monitor Python automation code.
 - **workflows/:** contains the JSON files of the different workflows that have been tested in the project.
-- **edgeelss_db.db:** the SQLite3 database file containing the serialized Random Forest classifier.
+- **edgeless_db.db:** the SQLite3 database file containing the serialized Random Forest classifier.
 - **start_cluster.sh:** handy bash script to help start a minimal EDGELESS cluster composed of an EDGELESS controller and orchestrator (single orchestration domain).
 
 ## Starting an experiment campaign to measure data for the proposed EDGELESS workflow
