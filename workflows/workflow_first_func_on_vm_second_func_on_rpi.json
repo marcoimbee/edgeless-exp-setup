@@ -1,0 +1,101 @@
+{
+    "functions": [
+        {
+            "name": "generate_samples",
+            "class_specification": {
+                "id": "generate_samples",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/generate_samples/generate_samples.wasm",
+                "outputs": [
+                    "generated_samples",
+                    "ttc_measurement_start"
+                ]
+            },
+            "output_mapping": {
+                "generated_samples": "extract_features",
+                "ttc_measurement_start": "ttc-log"
+            },
+            "annotations": {
+		"node_id_match_any": "c7126760-223a-44a4-9a61-4ce1eaca8141",
+                "init-payload": "batch_size=100,generation_interval_ms=5000,start_working_after_ms=10000,seed=12345"
+            }
+        },
+        {
+            "name": "extract_features",
+            "class_specification": {
+                "id": "extract_features",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/extract_features/extract_features.wasm",
+                "outputs": [
+                    "extracted_features"
+                ]
+            },
+            "output_mapping": {
+                "extracted_features": "classify"
+            },
+            "annotations": {
+		"node_id_match_any": "41cea154-cc7a-4eb9-8337-c0947ccba13e"
+	    }
+        },
+        {
+            "name": "classify",
+            "class_specification": {
+                "id": "classify",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/classify/classify.wasm",
+                "outputs": [
+                    "classification_result"
+                ]
+            },
+            "output_mapping": {
+                "classification_result": "handle_class_result",
+                "sqlx_database": "classifier-sqlx"
+            },
+	    "annotations": {
+	        "node_id_match_any": "c7126760-223a-44a4-9a61-4ce1eaca8141"	
+    	    }
+        },
+	    {
+            "name": "handle_class_result",
+            "class_specification": {
+                "id": "handle_class_result",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/handle_class_result/handle_class_result.wasm",
+                "outputs": [
+                    "ttc_measurement_end"
+                ]
+            },
+            "output_mapping": {
+                "ttc_measurement_end": "ttc-log"
+            },
+            "annotations": {
+		"node_id_match_any": "c7126760-223a-44a4-9a61-4ce1eaca8141"	
+	    }
+        }
+    ],
+    "resources": [
+        {
+            "name": "ttc-log",
+            "class_type": "file-log",
+            "output_mapping": {},
+            "configurations": {
+                "filename": "/home/pi/Desktop/ttc_log.log",
+                "add-timestamp": "true"
+            }
+        },
+        {
+            "name": "classifier-sqlx",
+            "class_type": "sqlx",
+            "output_mapping": {},
+            "configurations": {
+                "url": "sqlite:///var/tmp/edgeless_db.db",
+                "key": "random"
+            }
+        }
+    ],
+    "annotations": {}
+}

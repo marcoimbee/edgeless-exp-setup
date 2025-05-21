@@ -1,0 +1,14 @@
+bcrypt==4.1.2
+cffi==1.16.0
+crc==6.1.1
+cryptography==42.0.5
+otii-tcp-client==1.0.7
+paho-mqtt==1.6.1
+paramiko==3.4.0
+pycparser==2.21
+PyNaCl==1.5.0
+python-dateutil==2.9.0.post0
+scp==0.14.5
+six==1.16.0
+tomli==2.0.1
+win-precise-time==1.4.2

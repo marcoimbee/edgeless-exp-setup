@@ -1,0 +1,7 @@
+{
+    "id": "handle_class_result",
+    "function_type": "RUST_WASM",
+    "version": "1.0",
+    "build": "Cargo.toml",
+    "outputs": []
+}
