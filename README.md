@@ -3,15 +3,6 @@
 ## About this work and this repository
 A repository containing all the necessary files to run an experimental campaign to gather power and Time to Complete data in an EDGELESS cluster. Developed for my master degree thesis (2025).
 
-## Starting an experiment campaign to measure data for the proposed EDGELESS workflow
-This file serves as a guide to reproduce the experiment runs conducted in the experiment campaigns. In this type of experiments, power consumption and Time to Complete data will be gathered for a later analysis. To exactly reproduce the experimental setup, the following main components are needed:
-- **A RaspberryPI 3B+ board (RPI):** will host one $\varepsilon$-node and the device module of the Python automation script
-- **A first Ubuntu virtual machine:** will host $\varepsilon$-CON, $\varepsilon$-ORC, and the Redis database used by the latter.
-- **A second Ubuntu virtual machine:** will host one $\varepsilon$-node.
-- **A PC:** will serve as the controller and will run the controller module of the Python automation script.
-- **An Otii Arc Pro power monitor:** used to power up the RaspberryPi board.
-The next steps assume that these requirements are satisfied.
-
 ## Directory structure
 - **classifier_training/:** contains the Rust programs that have been employed to train and serialize the Random Forest classifier used in the project.
 - **data_analysis/:** contains some Python notebooks to analyze and visualize the gathered data.
@@ -20,6 +11,15 @@ The next steps assume that these requirements are satisfied.
 - **workflows/:** contains the JSON files of the different workflows that have been tested in the project.
 - **edgeelss_db.db:** the SQLite3 database file containing the serialized Random Forest classifier.
 - **start_cluster.sh:** handy bash script to help start a minimal EDGELESS cluster composed of an EDGELESS controller and orchestrator (single orchestration domain).
+
+## Starting an experiment campaign to measure data for the proposed EDGELESS workflow
+This file serves as a guide to reproduce the experiment runs conducted in the experiment campaigns. In this type of experiments, power consumption and Time to Complete data will be gathered for a later analysis. To exactly reproduce the experimental setup, the following main components are needed:
+- **A RaspberryPI 3B+ board (RPI):** will host one $\varepsilon$-node and the device module of the Python automation script
+- **A first Ubuntu virtual machine:** will host $\varepsilon$-CON, $\varepsilon$-ORC, and the Redis database used by the latter.
+- **A second Ubuntu virtual machine:** will host one $\varepsilon$-node.
+- **A PC:** will serve as the controller and will run the controller module of the Python automation script.
+- **An Otii Arc Pro power monitor:** used to power up the RaspberryPi board.
+The next steps assume that these requirements are satisfied.
 
 ### Downloading and setting up the automation scripts
 A copy of the automation script must be available both on the RPI board and on the PC.
