@@ -1,0 +1,28 @@
+[workspace]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level = "z"
+panic = "abort"
+codegen-units = 1
+strip = true
+
+[package]
+name = "classifier_test"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "classifier_test"
+path = "src/lib.rs" 
+crate-type = ["cdylib"]
+
+[dependencies]
+edgeless_function = { path = "../edgeless/edgeless_function"}
+log = "0.4"
+smartcore = { version = "0.3", features = [ "serde" ] }
+ndarray = "0.15"
+statrs = "0.11.0"
+nalgebra = "0.29"

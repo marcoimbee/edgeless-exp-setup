@@ -1,0 +1,79 @@
+{
+    "functions": [
+        {
+            "name": "sensor_simulator_add",
+            "class_specification": {
+                "id": "sensor_simulator_add",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/sensor_simulator_add/sensor_simulator_add.wasm",
+                "outputs": [
+                    "output"
+                ]
+            },
+            "output_mapping": {
+                "output": "add_10"
+            },
+	        "annotations": {}
+        },
+        {
+            "name": "add_10",
+            "class_specification": {
+                "id": "add_10",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/add_10/add_10.wasm",
+                "outputs": [
+                    "res_1"
+                ]
+            },
+            "output_mapping": {
+                "res_1": "add_100"
+            },
+            "annotations": {}
+        },
+        {
+            "name": "add_100",
+            "class_specification": {
+                "id": "add_100",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/add_100/add_100.wasm",
+                "outputs": [
+                    "res_2"
+                ]
+            },
+            "output_mapping": {
+                "res_2": "add_1000"
+            },
+	        "annotations": {}
+        },
+        {
+            "name": "add_1000",
+            "class_specification": {
+                "id": "add_1000",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/add_1000/add_1000.wasm",
+                "outputs": [
+                    "res_3"
+                ]
+            },
+            "output_mapping": {
+                "res_3": "file-log"
+            },
+	        "annotations": {}
+        }
+    ],
+    "resources": [
+        {
+            "name": "file-log",
+            "class_type": "file-log",
+            "output_mapping": {},
+            "configurations": {
+                "filename": "test_two_nodes_log.log"
+            }
+        }
+    ],
+    "annotations": {}
+}

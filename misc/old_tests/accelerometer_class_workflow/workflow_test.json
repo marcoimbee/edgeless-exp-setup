@@ -1,0 +1,64 @@
+{
+    "functions": [
+        {
+            "name": "generate_samples",
+            "class_specification": {
+                "id": "generate_samples",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/generate_samples/generate_samples.wasm",
+                "outputs": [
+                    "generated_samples"
+                ]
+            },
+            "output_mapping": {
+                "generated_samples": "extract_features"
+            },
+            "annotations": {}
+        },
+        {
+            "name": "extract_features",
+            "class_specification": {
+                "id": "extract_features",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/extract_features/extract_features.wasm",
+                "outputs": [
+                    "extracted_features"
+                ]
+            },
+            "output_mapping": {
+                "extracted_features": "classify"
+            },
+            "annotations": {}
+        },
+        {
+            "name": "classify",
+            "class_specification": {
+                "id": "classify",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/classify/classify.wasm",
+                "outputs": [
+                    "classification_result"
+                ]
+            },
+            "output_mapping": {
+                "classification_result": "redis_server"
+            },
+            "annotations": {}
+        }
+    ],
+    "resources": [
+        {
+            "name": "redis_server",
+            "class_type": "redis",
+            "output_mapping": {},
+            "configurations": {
+                "url": "redis://192.168.1.16:6379/",
+                "key": "classification-result"
+            }
+        }
+    ],
+    "annotations": {}
+}

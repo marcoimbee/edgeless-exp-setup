@@ -1,0 +1,30 @@
+// Determine the node which is closest to the ORC
+// let closest_node_id = self.nodes
+//     .iter()
+//     .min_by(|(_, desc_1), (_, desc_2)| desc_1.node_to_orc_latency.partial_cmp(&desc_2.node_to_orc_latency).unwrap_or(std::cmp::Ordering::Equal))
+//     .map(|(node_id, _)| node_id.clone())
+//     .unwrap();
+
+// println!("[INFO] Closest node to the E-ORC: {}", closest_node_id);
+
+// for (node_id, node_desc) in &self.nodes {
+//     for lid in &node_desc.function_instances {
+//         let instance_desc = self
+//             .instances
+//             .get(lid)
+//             .expect("Function instance disappeared");
+
+//         if instance_desc.relocatable {
+//             println!("[INFO] {} (spawned on: {}) is relocatable", lid, node_id);
+
+//             if !(node_id == &closest_node_id) {
+//                 println!("\t-> Relocating {} from {} to {}...", lid, node_id, closest_node_id);
+
+//                 migrations.push(edgeless_orc::deploy_intent::DeployIntent::Migrate(
+//                     *lid,
+//                     vec![closest_node_id.clone()],
+//                 ));
+//             }
+//         }
+//     }
+// }

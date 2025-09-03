@@ -1,0 +1,24 @@
+[workspace]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level = "z"
+panic = "abort"
+codegen-units = 1
+strip = true
+
+[package]
+name = "perfTestFun"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "perfTestFun"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+edgeless_function = { path = "../../edgeless/edgeless_function" }
+log = "0.4"

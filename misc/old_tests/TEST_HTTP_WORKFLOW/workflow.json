@@ -1,0 +1,74 @@
+{
+    "functions": [
+        {
+            "name": "external_trigger",
+            "class_specification": {
+                "id": "http_read_strings",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/http_read_strings/http_read_strings.wasm",
+                "outputs": [
+                    "parsed_strings"
+                ]
+            },
+            "output_mapping": {
+                "parsed_strings": "string_in_text"
+            },
+            "annotations": {}
+        },
+        {
+            "name": "string_in_text",
+            "class_specification": {
+                "id": "string_in_text",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/string_in_text/string_in_text.wasm",
+                "outputs": [
+                    "result"
+                ]
+            },
+            "output_mapping": {
+                "result": "external_sink"
+            },
+            "annotations": {}
+        },
+        {
+            "name": "external_sink",
+            "class_specification": {
+                "id": "http_write_boolean",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "../functions/http_write_boolean/http_write_boolean.wasm",
+                "outputs": [
+                    "external_sink"
+                ]
+            },
+            "output_mapping": {
+                "external_sink": "http-egress"
+            },
+            "annotations": {
+		"init-payload": "127.0.0.1:10000"
+            }
+        }
+    ],
+    "resources": [
+        {
+            "name": "http-ingress",
+            "class_type": "http-ingress",
+            "output_mapping": {
+                "new_request": "external_trigger"
+            },
+            "configurations": {
+                "host": "RaspberryPI",
+                "methods": "POST"
+            }
+        },
+        {
+            "name": "http-egress",
+            "class_type": "http-egress",
+            "output_mapping": {},
+            "configurations": {}
+        }
+    ],
+    "annotations": {}
+}

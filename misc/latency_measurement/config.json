@@ -1,0 +1,8 @@
+{
+    "orchestrator_ip": "192.168.135.104",
+    "vm_node_ip": "10.8.0.1",
+    "rpi_node_ip": "10.8.0.10",
+    "redis_server_ip_address": "192.168.135.104",
+    "rpi_node_uuid": "c7126760-223a-44a4-9a61-4ce1eaca8141",
+    "vm_node_uuid": "41cea154-cc7a-4eb9-8337-c0947ccba13e"
+}

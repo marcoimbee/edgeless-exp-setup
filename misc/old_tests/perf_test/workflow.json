@@ -1,0 +1,31 @@
+{
+    "functions": [
+        {
+            "name": "perfTestFun",
+            "class_specification": {
+                "id": "perftestFun",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/perfTestFun.wasm",
+                "outputs": [
+                    "metric"
+                ]
+            },
+            "output_mapping": {
+                "metric": "metrics-collector"
+            },
+            "annotations": {}
+        }
+    ],
+    "resources": [
+        {
+            "name": "metrics-collector",
+            "class_type": "metrics-collector",
+            "output_mapping": {},
+            "configurations": {
+                "wf_name": "perf_test_wf"
+            }
+        }
+    ],
+    "annotations": {}
+}

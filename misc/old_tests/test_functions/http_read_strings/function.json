@@ -1,0 +1,9 @@
+{
+	"id": "http_read_strings",
+	"function_type": "RUST_WASM",
+	"version": "0.1",
+	"build": "Cargo.toml",
+	"outputs": [
+		"parsed_strings"
+	]
+}

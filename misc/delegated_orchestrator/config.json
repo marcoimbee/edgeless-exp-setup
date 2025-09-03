@@ -1,0 +1,16 @@
+{
+    "sample_workflow_path": "../../../accelerometer_classification_workflow/workflow.json",
+    "edgeless_exec_directory": "../edgeless/target/debug/",
+    "nodes_uuids": {
+	    "rpi_node": "c7126760-223a-44a4-9a61-4ce1eaca8141",
+	    "vm_node": "41cea154-cc7a-4eb9-8337-c0947ccba13e"
+    },
+    "orchestration_params": {
+        "proxy_type": "Redis",
+        "redis_url": "redis://127.0.0.1:6379",
+        "num_relocations": 1,
+        "latency_threshold": 100.0,
+        "relocation_wait_interval_ms": 5000,
+        "monitoring_wait_interval_ms": 2000
+    }
+}

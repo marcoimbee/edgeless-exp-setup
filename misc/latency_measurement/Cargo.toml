@@ -1,0 +1,11 @@
+[package]
+name = "latency_measurement"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+redis = "0.23"
+ping = "0.5.2"
+tokio = { version = "1.0", features = ["full"] }
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }

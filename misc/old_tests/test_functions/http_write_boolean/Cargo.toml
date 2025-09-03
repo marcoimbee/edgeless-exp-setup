@@ -1,0 +1,27 @@
+[workspace]
+
+[profiles.dev]
+panic = "abort"
+
+[profile.release]
+lto = true
+opt-level = "z"
+panic = "abort"
+codegen-units = 1
+strip = true
+
+[package]
+name = "http_write_boolean"
+version = "0.1.0"
+authors = ["Marco Imbelli Cai"]
+edition = "2021"
+
+[lib]
+name = "http_write_boolean"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+edgeless_function = { path = "../../edgeless_function" }
+edgeless_http = { path = "../../edgeless_http" }
+log = "0.4"

@@ -1,0 +1,30 @@
+[package]
+name = "delegated_orc"
+version = "0.1.0"
+authors = [ "Marco Imbelli Cai" ]
+edition = "2021"
+description = "Custom delegated orchestrator for an EDGELESS cluster"
+license = "MIT"
+
+[lib]
+name = "delegated_orc"
+path = "src/lib.rs"
+
+[[bin]]
+name = "delegated_orc"
+path = "src/bin/delegated_orc.rs"
+
+[dependencies]
+log = "0.4"
+env_logger = "0.10"
+edgeless_api = { path = "../edgeless/edgeless_api", features = ["grpc_impl"] }
+edgeless_orc = { path = "../edgeless/edgeless_orc" }
+clap = { version = "4.3", features = ["derive"] }
+itertools = "0.13.0"
+anyhow = "1.0"
+redis = "0.25"
+crossterm = "0.26"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1", features = ["v4"] }
+ctrlc = "3.2"

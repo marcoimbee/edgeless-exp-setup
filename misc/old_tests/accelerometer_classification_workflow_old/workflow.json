@@ -1,0 +1,84 @@
+{
+    "functions": [
+        {
+            "name": "generate_samples",
+            "class_specification": {
+                "id": "generate_samples",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/generate_samples/generate_samples.wasm",
+                "outputs": [
+                    "generated_samples",
+                    "aoi_measurement_start"
+                ]
+            },
+            "output_mapping": {
+                "generated_samples": "extract_features",
+                "aoi_measurement_start": "aoi-log"
+            },
+            "annotations": {
+                "init-payload": "batch_size=100,generation_interval_ms=5000,start_working_after_ms=10000,min_value=1,max_value=2,seed=12345"
+            }
+        },
+        {
+            "name": "extract_features",
+            "class_specification": {
+                "id": "extract_features",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/extract_features/extract_features.wasm",
+                "outputs": [
+                    "extracted_features"
+                ]
+            },
+            "output_mapping": {
+                "extracted_features": "classify"
+            },
+            "annotations": {}
+        },
+        {
+            "name": "classify",
+            "class_specification": {
+                "id": "classify",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/classify/classify.wasm",
+                "outputs": [
+                    "classification_result"
+                ]
+            },
+            "output_mapping": {
+                "classification_result": "handle_class_result"
+            },
+	        "annotations": {}
+        },
+	    {
+            "name": "handle_class_result",
+            "class_specification": {
+                "id": "handle_class_result",
+                "function_type": "RUST_WASM",
+                "version": "0.1",
+                "code": "functions/handle_class_result/handle_class_result.wasm",
+                "outputs": [
+                    "aoi_measurement_end"
+                ]
+            },
+            "output_mapping": {
+                "aoi_measurement_end": "aoi-log"
+            },
+            "annotations": {}
+        }
+    ],
+    "resources": [
+        {
+            "name": "aoi-log",
+            "class_type": "file-log",
+            "output_mapping": {},
+            "configurations": {
+                "filename": "/home/marco/Desktop/aoi_log.log",
+                "add-timestamp": "true"
+            }
+        }
+    ],
+    "annotations": {}
+}
